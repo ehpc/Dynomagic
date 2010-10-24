@@ -328,7 +328,7 @@ function Dynomagic()
         saveDom.css("left", cancelDom.offset().left + parseInt(cancelDom.css("width"), 10));
 
         // show/hide button
-        html = '<div class="dynoShowHideButton"><img src="/simvc/img/showhide.png" width="16" height="16" /></div>';
+        html = '<div class="dynoShowHideButton"><img src="' + dynomagicImgUri + 'showhide.png" width="16" height="16" /></div>';
         var showhideDom = $(html);
         showhideDom.appendTo(tableDom);
         showhideDom.css("top", tableDom.offset().top + 5);

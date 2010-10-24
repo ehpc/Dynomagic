@@ -9,7 +9,7 @@
 function progressShowProgress($el, $text) {
     var height = $el.height();
     var width = $el.width();
-    $el.prepend('<div style="position: absolute; display: none; z-index: 9000;" class="progressPlugin"><div>'+$text+'</div><img src="/simvc/img/ajax-loader.gif" /></div>');
+    $el.prepend('<div style="position: absolute; display: none; z-index: 9000;" class="progressPlugin"><div>'+$text+'</div><img src="'+dynomagicImgUri+'ajax-loader.gif" /></div>');
     $progress = $el.find(".progressPlugin");
     $progress.css("background", "#333333");
     $progress.css("text-align", "center");

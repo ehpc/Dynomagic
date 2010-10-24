@@ -31,7 +31,7 @@
 
 /* resizable textarea */
 div.grippie {
-background:#EEEEEE url('/simvc/img/grippie.png') no-repeat scroll center 2px;
+background:#EEEEEE;
 border-color:#DDDDDD;
 border-style:solid;
 border-width:0pt 1px 1px;

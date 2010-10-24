@@ -34,6 +34,8 @@
                     simvcGrip.css("width", $(this).css("width"));
 
 		    var grippie = $('div.grippie', $(this).parent())[0];
+                    $('div.grippie').css("background", "#EEEEEE url('"+dynomagicImgUri+"grippie.png') no-repeat scroll center 2px");
+
 		    grippie.style.marginRight = (grippie.offsetWidth - $(this)[0].offsetWidth) +'px';
 
 		});
