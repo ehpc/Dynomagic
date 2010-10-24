@@ -397,7 +397,10 @@ function Dynomagic()
             if (createEditor)
                 createEditorN(n);
             fillEditorN(n);
-            SyntaxHighlighter.highlight();
+            if (SyntaxHighlighter !== "undefined")
+            {
+                SyntaxHighlighter.highlight();
+            }
             progressHideProgress(tableDom);
         });
     }

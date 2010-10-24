@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>dynomagic</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/dynomagic.css" />
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/dynomagic.js"></script>
+    <script type="text/javascript" src="/js/progress.js"></script>
+    <script type="text/javascript" src="/js/jquery.textarearesizer.js"></script>
+    <script type="text/javascript" src="/js/text.transform.js"></script>
+   
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var dyno = new Dynomagic();
+        dyno.run();
+    });
+    </script>
+</head>
+
+<body>
+
+<div class="dynoTable_myTable">
+    <div class="dynoUri">/get.php</div>
+    <div class="dynoUriUpdate">/set.php</div>
+    <div class="dynoField_myField1 dynoInputTypeTextbox"><span class="dynoLabel">Field 1</span></div>
+    <div class="dynoField_myField2 dynoInputTypeTextbox"><span class="dynoLabel">Field 2</span></div>
+</div>
+
+</body>
+</html>
