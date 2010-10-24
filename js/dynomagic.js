@@ -397,7 +397,7 @@ function Dynomagic()
             if (createEditor)
                 createEditorN(n);
             fillEditorN(n);
-            if (SyntaxHighlighter !== "undefined")
+            if (typeof(SyntaxHighlighter) !== "undefined")
             {
                 SyntaxHighlighter.highlight();
             }
