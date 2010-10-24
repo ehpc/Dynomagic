@@ -27,7 +27,9 @@
     position: absolute;
 }
 
-
+div.dynoYoutube {
+    text-align: center;
+}
 
 /* resizable textarea */
 div.grippie {

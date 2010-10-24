@@ -90,6 +90,9 @@ function textTransformToHtml(text)
     html = html.replace(/\[img(.*?)\](.+?)\[\/img\]/g, '<img $1 src="$2" />');
     html = html.replace(/\[a(.*?)\](.+?)\[\/a\]/g, '<a $1 target="_blank">$2</a>');
 
+    // youtube
+    html = html.replace(/\[youtube width="(\d+?)" height="(\d+?)" url="(.+?)"\]/g, '<div class="dynoYoutube"><a class="dynoYoutube" width="$1" height="$2" href="$3" >dynoYoutube</a></div>');
+
     html = html.replace(/<br\/>(\d)\. /g, '<br/><b class="numlist">$1.</b> ');
 
     // word-highliter

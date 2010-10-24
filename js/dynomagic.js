@@ -386,6 +386,15 @@ function Dynomagic()
                 if (fieldSyntax)
                 {
                     fieldDom.html(textTransformToHtml(fieldValue));
+                    fieldDom.find("a.dynoYoutube").each(function () {
+                        var width = $(this).attr("width");
+                        var height = $(this).attr("height");
+                        var url = $(this).attr("href");
+                        $(this).youtubin({
+                            swfWidth : width,
+                            swfHeight : height
+                        });
+                    });
                 }
                 else
                 {
