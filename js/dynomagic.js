@@ -142,11 +142,11 @@ function Dynomagic()
             {
                 if (parseInt(fieldValue) != 0)
                 {
-                    editorDom.removeAttr("checked");
+                    editorDom.attr("checked", "checked");
                 }
                 else
                 {
-                    editorDom.attr("checked", "checked");
+                    editorDom.removeAttr("checked");
                 }
             }
         }
@@ -174,7 +174,7 @@ function Dynomagic()
             }
             else if (editorType == DynomagicEditorType.checkbox)
             {
-                editorValue = editorDom.is(':checked') ? 0 : 1;
+                editorValue = editorDom.is(':checked') ? 1 : 0;
             }
             // escape
             editorValue = textTransformHtmlSpecial(editorValue, false);

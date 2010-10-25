@@ -79,21 +79,26 @@ function textTransformToHtml(text)
     var html = text;
     //html = html.replace(/&/gi, "&amp;");
     //html = html.replace(/</gi, "&lt;").replace(/>/gi, "&gt;");
-    html = html.replace(/\r\n/gi, "<br/>").replace(/\n/gi, "<br/>");
-    html = html.replace(/\[h(\d)\](.+?)\[\/h\d\]/gi, "<h$1>$2</h$1>");
 
-    html = html.replace(/\[q\](.+?)\[q\]/g, '<i class="ttQuoted">$1</i>');
-    html = html.replace(/\[f\](.+?)\[f\]/g, '<b class="ttFilename">$1</b>');
-    html = html.replace(/\[space=(.+?)\]/g, '<span style="margin-right: $1">&nbsp;</span>');
-    html = html.replace(/\[mdash\]/g, '&mdash;');
-
-    html = html.replace(/\[img(.*?)\](.+?)\[\/img\]/g, '<img $1 src="$2" />');
-    html = html.replace(/\[a(.*?)\](.+?)\[\/a\]/g, '<a $1 target="_blank">$2</a>');
-
-    // youtube
-    html = html.replace(/\[youtube width="(\d+?)" height="(\d+?)" url="(.+?)"\]/g, '<div class="dynoYoutube"><a class="dynoYoutube" width="$1" height="$2" href="$3" >dynoYoutube</a></div>');
-
-    html = html.replace(/<br\/>(\d)\. /g, '<br/><b class="numlist">$1.</b> ');
+    // remove newlines
+    html = replaceTextNotBetween(html, "[off]", "[/off]", function (text) {
+        return text.replace(/\r\n/gi, "<br/>").replace(/\n/gi, "<br/>");
+    });
+    // wrap code in off so it won't get hurt
+    html = html.replace(/(\[code.+?"\].+?\[\/code\])/gi, "[off]$1[/off]");
+    // transform
+    html = replaceTextNotBetween(html, "[off]", "[/off]", function (text) {
+        return text.replace(/\[h(\d)\](.+?)\[\/h\d\]/gi, "<h$1>$2</h$1>")
+            .replace(/\[q\](.+?)\[q\]/g, '<i class="ttQuoted">$1</i>')
+            .replace(/\[f\](.+?)\[f\]/g, '<b class="ttFilename">$1</b>')
+            .replace(/\[space=(.+?)\]/g, '<span style="margin-right: $1">&nbsp;</span>')
+            .replace(/\[mdash\]/g, '&mdash;')
+            .replace(/\[img(.*?)\](.+?)\[\/img\]/g, '<img $1 src="$2" />')
+            .replace(/\[a(.*?)\](.+?)\[\/a\]/g, '<a $1 target="_blank">$2</a>')
+            .replace(/\[youtube width="(\d+?)" height="(\d+?)" url="(.+?)"\]/g, '<div class="dynoYoutube"><a class="dynoYoutube" width="$1" height="$2" href="$3" >dynoYoutube</a></div>')
+            .replace(/<br\/>(\d)\. /g, '<br/><b class="numlist">$1.</b> ')
+            .replace(/\[lsb\]/g, '&#91;').replace(/\[rsb\]/g, '&#93;');
+    });
 
     // word-highliter
     var words = new Array();
@@ -105,17 +110,23 @@ function textTransformToHtml(text)
         var word = match[2];
         words[word] = color;
     }
-    html = html.replace(/\[wh=[abcdefABCDEF0-9]+?\].+?\[wh\]/gi, "");
+    html = replaceTextNotBetween(html, "[off]", "[/off]", function (text) {
+        return text.replace(/\[wh=[abcdefABCDEF0-9]+?\].+?\[wh\]/gi, "");
+    });
     for (word in words)
     {
         color = words[word];
-        html = replaceTextNotBetween(html, "[code", "[/code]", word, '<span style="color: #' + color + '">' + word + '</span>');
+        html = replaceTextNotBetween(html, "[off]", "[/off]", word, '<span style="color: #' + color + '">' + word + '</span>');
     }
 
+    // remove off tags
+    html = html.replace(/\[off\](.*?)\[\/off\]/gi, "$1");
+   
 
     // prepare code for syntax highlighting
     html = html.replace(/\[code (class="brush\: .+?")\](.+?)\[\/code\]/gi, "<pre $1>$2</pre>");
     html = replaceTextBetween(html, '<pre class="brush', "</pre>", "<br/>", "\n");
+
 
     return html;
 }
